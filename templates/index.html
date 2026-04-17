@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SMS Spam Filter</title>
+
+<style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #f8a1a1, #f64f3de4);
+            color: rgb(22, 20, 31);
+            text-align: center;
+            padding: 50px;
+        }
+
+        .container {
+            background: #f7bdba;
+            padding: 30px;
+            border-radius: 10px;
+            width: 50%;
+            margin: auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+
+        h1 {
+            color: #072bcc;
+        }
+
+        textarea {
+            width: 90%;
+            height: 120px;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            margin-top: 15px;
+            font-size: 16px;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 25px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #00c3ff;
+            color: black;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0099cc;
+        }
+
+        .result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .spam {
+            color: red;
+        }
+
+        .ham {
+            color: green;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>📩 SMS Spam Filter</h1>
+        <h2>    Spam / Not Spam </h2>
+        <p>This application uses NLP techniques such as Porter Stemmer, <br>
+            TF-IDF Vectorization, and Random Forest Classifier to accurately <br>
+            classify SMS messages as spam or non-spam.</p>
+
+
+        <form action="/predict" method="POST">
+            <textarea name="message" placeholder="Enter your SMS here..." required></textarea>
+            <br>
+            <button type="submit">Check Message</button>
+        </form>
+
+        <!-- Show result only if available -->
+        {% if prediction_text %}
+            <div class="result {% if 'Not Spam' in prediction_text %} ham {% else %} spam {% endif %}">
+                {{ prediction_text }}
+            </div>
+        {% endif %}
+                <div style="text-align: left;">
+                    <h3><ul>How it works:</ul></h3>
+                    <li>Text is preprocessed using Porter Stemmer</li>
+                    <li>TF-IDF Vectorization extracts key features</li>
+                    <li>Random Forest Classifier predicts messages</li>
+                    <li>99%+ accuracy on test data</li>
+                </div>
+    </div>
+
+</body>
+</html>
