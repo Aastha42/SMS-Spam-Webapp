@@ -11,7 +11,7 @@ nltk.download('stopwords')
 app = Flask(__name__)
 
 # Load trained model and vectorizer
-model = pickle.load(open('sms_model_rf.pkl', 'rb'))
+model = pickle.load(open('sms_model_bnb.pkl', 'rb'))
 vectorizer = pickle.load(open('sms_vectorizer_tfidf.pkl', 'rb'))
 
 ps = PorterStemmer()
